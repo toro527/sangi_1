@@ -1,415 +1,103 @@
-
 <!DOCTYPE html>
 <html lang="ja">
-	<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
-		<meta name="format-detection" content="telephone=no,address=no,email=no">
+  <!---　meta情報(web上に表示さない部分) ------->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex" />
+    <meta name="googlebot" content="noindex" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>テストサイト</title>
+    <!-- css -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css"
+    />
+    <link rel="stylesheet" href="style.css" />
 
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho&display=swap" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="https://unpkg.com/buefy/dist/buefy.min.css">
-		<link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-		<link rel="stylesheet" href="/style.css">
-	</head>
+    <!-- /slick css script をコピペ -->
+    <!-- ↑ここのファイルを作成してcssを記入 -->
+  </head>
+  <!---meta情報(web上に表示されない部分) /------->
+  <!---全体のレイアウト(web上に表示される部分) ------->
+  <body>
+    <header class="header">ヘッダーエリアです！</header>
+    <main>
+      <!--本日はここから使用します-->
 
-	<body>
+      <div class="main">
+        <section class="gallery">
+          <ul>
+            <li>
+              <img
+                src="https://cdn.pixabay.com/photo/2023/10/01/19/14/pumpkins-8287968_1280.jpg"
+                alt=""
+              />
+            </li>
+            <li>
+              <img
+                src="https://cdn.pixabay.com/photo/2015/04/16/21/10/skull-726253_1280.jpg"
+                alt=""
+              />
+            </li>
+            <li>
+              <img
+                src="https://cdn.pixabay.com/photo/2017/10/10/16/55/halloween-2837936_1280.png"
+                alt=""
+              />
+            </li>
+            <li>
+              <img
+                src="https://cdn.pixabay.com/photo/2012/12/27/19/41/halloween-72939_1280.jpg"
+                alt=""
+              />
+            </li>
+            <li>
+              <img
+                src="https://cdn.pixabay.com/photo/2023/10/01/19/14/pumpkins-8287968_1280.jpg"
+                alt=""
+              />
+            </li>
+            <li>
+              <img
+                src="https://cdn.pixabay.com/photo/2015/04/16/21/10/skull-726253_1280.jpg"
+                alt=""
+              />
+            </li>
+            <li>
+              <img
+                src="https://cdn.pixabay.com/photo/2017/10/10/16/55/halloween-2837936_1280.png"
+                alt=""
+              />
+            </li>
+            <li>
+              <img
+                src="https://cdn.pixabay.com/photo/2012/12/27/19/41/halloween-72939_1280.jpg"
+                alt=""
+              />
+            </li>
+          </ul>
+        </section>
+      </div>
 
-		<div id="header" >
-			<div class="header">
-
-				<nav class="navbar">
-
-					<div class="navbar-logo">
-						<a class="logo" href="/">
-							<img src="/images/logo_head.png">
-						</a>
-					</div>
-
-					<div class="navbar-pc" v-if="inWidth > 1280">
-						<ul class="navbar-pc-menu">
-							<li v-for="(item , index) in mainMenu" :key="index">
-								<a class="navbar-item" v-if="!item.child" :href="item.url">{{item.name}}</a>
-								<b-dropdown :triggers="['hover']" aria-role="menu" v-if="item.child">
-									<template #trigger >
-									<a class="navbar-item" :href="item.url">{{item.name}}<b-icon icon="chevron-right"></b-icon></a>
-									</template>
-									<b-dropdown-item aria-role="menuitem"
-										v-for="(child,index) in item.child" :key="index"
-										tag="a"
-										:href="child.url">{{child.name}}
-									</b-dropdown-item>
-								</b-dropdown>
-							</li>
-						</ul>
-
-						<ul class="navbar-pc-btn">
-							<li >
-							<a class="line-link" href="https://lin.ee/ozEVzzt" target="_blank">LINEで予約</a>
-							</li>
-						</ul>
-					</div>
-
-					<div v-else class="navbar-sp">
-						<a class="line-link" href="https://lin.ee/ozEVzzt" target="_blank">LINEで予約</a>
-						<div class="hamburger_btn" @click='clickMenuSp'
-						:class="{'open':ActiveBtn}">
-							<span class="line line_01" :class="{'btn_line01':ActiveBtn}"></span>
-							<span class="line line_02" :class="{'btn_line02':ActiveBtn}"></span>
-							<span class="line line_03" :class="{'btn_line03':ActiveBtn}"></span>
-						</div>
-						<transition name="menu">
-							<div class="menu_sp" v-show="ActiveBtn">
-
-								<div class="menu_sp-box">
-									<figure><img src="/images/logo_modal.png"></figure>
-									<b-menu>
-										<b-menu-list v-for="(list,index) in mainMenu" :key="index">
-											<b-menu-item
-												:href="list.url"
-												tag="a"
-												class="menu-list-item"
-											>
-												<template #label="props">{{list.name}}
-													<b-icon class="is-pulled-right" icon="chevron-right"></b-icon>
-												</template>
-											</b-menu-item>
-										</b-menu-list>
-									</b-menu>
-								</div>
-							</div>
-						</transition>
-					</div>
-
-				</nav>
-			</div>
-
-
-
-				<section class="mainvisual pc">
-
-					<video autoplay muted loop src="images/move/pc.mp4"></video>
-				</section>
-				<section class="mainvisual sp">
-
-					<video autoplay muted loop playsinline src="/images/move/sp.mp4"></video>
-				</section>
-
-
-		<!--/header -->
-		</div>
-
-
-
-
-	<article id="top">
-
-		<section id="concept2" >
-			<div class="concept" >
-				<div class="concept-title contents">
-					<h2 class="til"><span></span>concept<span></span></h2>
-					<h3><span>「巣」鳥の巣</span><br class="sp">【外観・内観は、鳥の巣をイメージして柔らかい曲線に包まれるようなデザイン<br>その時の気分や状態で居場所を選べ、さまざまな体勢で変えることで発想力が生まれます。】</h3>
-					<h3><span>「素」素　材</span><br class="sp">【ここに来るだけで創造力が生まれ、さらなる次へのエネルギーチャージをして自分自身の可能性を発見し、新しい未来を発見できる場所であり、いつもの素の状態でいられる。】</h3>
-				</div>
-			</div>
-		</section>
-
-		<section id="plan" >
-			<div class="plan-head">
-				<div class="plan-title">
-					<h2 class="eggtil"><span></span>Information<span></span></h2>
-					<p class="mincho">施設案内</p>
-				</div>
-			</div>
-			<div class="plan">
-				<div class="plan-box">
-					<div class="contents">
-						<h3 class="mincho">ワーケーション</h3>
-						<p>ワーケーション施設（貸別荘・ワーケーション・１棟貸）<br>ゲスト7人・4寝室・布団7・バスルーム・トイレ2ヵ所・キッチン<br><span>※サービス料は別途７千円/日かかります</span></p>
-						<ul  class="mincho">
-							<li>
-								<div class="">時間帯</div>
-								<div class="">チェックイン　15:00～20:00<br>チェックアウト　10:00</div>
-							</li>
-							<li>
-								<div class="">料　金<br>(税込)</div>
-								<div class="">オンシーズン :　80,000円<br>オフシーズン :　50,000円〜</div>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<div class="plan-box">
-					<div class="contents">
-						<h3 class="mincho mini">コワーキング</h3>
-						<p>コワーキング施設（チームでわいわい観光気分で仕事）<br>ゲスト1〜20人・会議室・キッチン・テラス・2階バルコニー・トイレ2ヵ所</p>
-						<ul  class="mincho">
-							<li>
-								<div class="">時間帯</div>
-								<div class="">10:00～15:00（最大20名）<br><span>※20名以上の場合はご連絡ください。</span></div>
-							</li>
-							<li>
-								<div class="">料　金<br>(税込)</div>
-								<div class="">1〜5人：10,000円<br>6〜14人：15,000円<br>15〜20人：25,000円</div>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<a href="https://book.susu-worcation.com/" targer="_blank">サービス紹介<b-icon icon="chevron-double-right"></b-icon></a>
-			</div>
-		</section>
-		<section id="cta" >
-			<div class="cta">
-				<div class="cta-title">
-					<h2 class="til"><span></span>contact<span></span><b>予約</b></h2>
-				</div>
-				<p>巣素のご予約・お問い合わせはLINEにて<br class="pc">承っております。お気軽にお問合せください。</p>
-				<a class="line-link" href="https://lin.ee/ozEVzzt" target="_blank">LINE
-			で予約</a>
-
-				</div>
-			</div>
-		</section>
-		<section id="concept" >
-
-			<div class="swiper photswiper" :class="inHeight">
-				<div class="swiper-wrapper" >
-					<div class="swiper-slide" v-for="(item, index) in contents" :key="index">
-						<img :src="item" >
-					</div>
-				</div>
-			</div>
-			<div class="concept-box">
-				<div class="concept-box-item">
-					<div class="text">
-						<h4 class="mincho">「空間デザイン心理士®️」考えた<br>自分の原点に戻れる空間設計</h4>
-						<p>  光、風、色、匂い、触感、全てをデザイン。<br>　　パーソナルスペースや仕事内容に<br>　　合わせて空間を選ぶことができます。<br>　「創造が捗る空間」を追求しました</p>
-					</div>
-				</div>
-				<figure><img src="images/top/concept_img05n.jpg" alt=""></figure>
-			</div>
-
-		</section>
-
-
-		<section id="floor" >
-			<div class="floor-head">
-				<div class="floor-title">
-					<h2 class="eggtil"><span></span>floor map<span></span></h2>
-					<p class="mincho">施設案内</p>
-				</div>
-			</div>
-			<div class="floor">
-				<div class="floor-box2">
-					<ul>
-						<li v-for="(item,index) in details" :key="index">
-							<figure><img :src="item.img" :alt="item.til"></figure>
-							<div class="box2-item">
-								<h3 class="mincho">{{item.til}}</h3>
-								<ul>
-									<li v-for="(list,index) in item.text" :key="index" v-html="list"></li>
-								</ul>
-							</div>
-
-						</li>
-					</ul>
-				</div>
-
-
-				<div class="floor-box3 contents">
-					<ul>
-						<li class="contents">
-							<figure><img src="images/top/floor_img04.jpg" alt=""></figure>
-							<div class="box3-item">
-								<h3 class="mincho">内装：自然素材で心地よい居場所</h3>
-								<ul>
-									<li v-for="(item,index) in naisou" :key="index" v-html="item"></li>
-									<li><b-icon icon="chevron-double-left"></b-icon><p>部屋をクリックして詳細を確認できます</p></li>
-								</ul>
-							</div>
-						</li>
-					</ul>
-					<button class="sumika" @click="sumikaActive = true"><b-icon icon="gesture-tap" ></b-icon>More Info</button>
-					<button class="eggroom" label="卵の部屋" @click="eggActive = true" ><b-icon icon="gesture-tap" ></b-icon>More Info</button>
-					<button class="kichin" label="キッチン" @click="kicinActive = true" ><b-icon icon="gesture-tap" ></b-icon>More Info</button>
-					<button class="balco" label="バルコニー" @click="balActive = true" ><b-icon icon="gesture-tap" ></b-icon>More Info</button>
-					<b-modal class="sumika-modal" v-model="sumikaActive" scroll="keep">
-						<div class="modalbox">
-							<h4>鳥のすみか<br class="sp">（コワーキングスペース）</h4>
-							<div class="contents" v-for="(item,index) in modal1" :key="index">
-								<figure>
-									<img :src="item.img" alt="鳥のすみか">
-								</figure>
-								<div class="modalbox-item" >
-									<p v-html="item.text"></p>
-									<p v-html="item.text2"></p>
-								</div>
-							</div>
-						</div>
-					</b-modal>
-					<b-modal v-model="eggActive" scroll="keep">
-						<div class="modalbox">
-							<h4>卵の部屋<br class="sp">（触感部屋）</h4>
-							<div class="contents" v-for="(item,index) in modal2" :key="index">
-								<figure>
-									<img :src="item.img" alt="卵の部屋">
-								</figure>
-								<div class="modalbox-item" >
-									<p v-html="item.text"></p>
-									<p v-html="item.text2"></p>
-								</div>
-							</div>
-						</div>
-					</b-modal>
-					<b-modal v-model="kicinActive" scroll="keep">
-						<div class="modalbox">
-							<h4>ダイニングキッチン</h4>
-							<div class="contents" v-for="(item,index) in modal3" :key="index">
-								<figure>
-									<img :src="item.img" alt="ダイニングキッチン">
-								</figure>
-								<div class="modalbox-item" >
-									<p v-html="item.text"></p>
-									<p v-html="item.text2"></p>
-								</div>
-							</div>
-						</div>
-					</b-modal>
-					<b-modal v-model="balActive" scroll="keep">
-						<div class="modalbox">
-							<h4>2階ベランダ・1階バルコニー</h4>
-							<div class="contents" v-for="(item,index) in modal4" :key="index">
-								<figure>
-									<img :src="item.img" alt="2階ベランダ・1階バルコニー">
-								</figure>
-								<div class="modalbox-item" >
-									<p v-html="item.text"></p>
-
-								</div>
-							</div>
-						</div>
-					</b-modal>
-				</div>
-
-			</div>
-
-		</section>
-
-		<section id="shisetumap" class="floor">
-			<div class="floor-box1">
-				<div class="contents">
-					<figure><img src="images/top/floor_img01.png" alt=""></figure>
-					<ul>
-						<li v-for="(item,index) in places" :key="index">{{item}}</li>
-					</ul>
-				</div>
-			</div>
-		</section>
-
-		<section id="access" >
-
-
-			<div class="access-head">
-				<div class="access-title">
-					<h2 class="eggtil"><span></span>access<span></span></h2>
-					<p class="mincho">アクセス</p>
-				</div>
-				<p class="head-info">〒410-3214 静岡県伊豆市下船原３２１<br>【月ヶ瀬ICより車で2・3分】</p>
-			</div>
-
-			<div class="access">
-				<div class="access-box">
-					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3271.276589735311!2d138.926462!3d34.9245996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6019ec49952fccf1%3A0x65db3721afb76611!2z44CSNDEwLTMyMTQg6Z2Z5bKh55yM5LyK6LGG5biC5LiL6Ii55Y6f77yT77yS77yR!5e0!3m2!1sja!2sjp!4v1668150535341!5m2!1sja!2sjp" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-				</div>
-			</div>
-		</section>
-
-		<section id="cta" >
-			<div class="cta">
-				<div class="cta-title">
-					<h2 class="til"><span></span>contact<span></span><b>予約</b></h2>
-				</div>
-				<p>巣素のご予約・お問い合わせはLINEにて<br class="pc">承っております。お気軽にお問合せください。</p>
-				<a class="line-link" href="https://lin.ee/ozEVzzt" target="_blank">LINE
-			で予約</a>
-
-				</div>
-			</div>
-		</section>
-
-		<section id="area-map">
-			<div class="area">
-				<figure><img class="pc" src="images/top/area_map.jpg" alt="">
-				<img class="sp" src="images/top/area_map.png" alt=""></figure>
-			</div>
-		</section>
-
-		<section id="company" >
-			<div class="company">
-				<div class="company-box">
-					<a class="btn" href="https://ayami-souzou-kuukan.com/about-ayami-kentikukoubou/" target="_blank">会社概要へ<b-icon icon="chevron-double-right"></b-icon></a>
-				</div>
-			</div>
-
-		</section>
-
-		<section id="cta2" >
-			<div class="cta2-head">
-				<div class="cta2-title">
-					<h2 class="eggtil"><span></span>contact<span></span></h2>
-					<p class="mincho">施設予約</p>
-				</div>
-			</div>
-			<div class="cta2">
-				<p>巣素のご予約・お問い合わせはLINEにて<br class="pc">承っております。お気軽にお問合せください。</p>
-				<a class="line-link" href="https://lin.ee/ozEVzzt" target="_blank">LINE
-			で予約</a>
-
-				</div>
-			</div>
-		</section>
-
-	</article>
-
-	<div id="footer" v-cloak>
-
-		<!--pc -->
-		<footer>
-
-			<div class="footer">
-				<div class="footer-box contents">
-
-					<ul class="footer-menu">
-						<li v-for="(item , index) in footerMenu" :key="index">
-							<a v-if="name!=='会社概要'" class="footer-item" :href="item.url">{{item.name}}</a>
-							<a v-else class="footer-item" :href="item.url" target="_blank">{{item.name}}\</a>
-						</li>
-					</ul>
-					<ul class="footer-sns">
-						<li><a href="https://www.facebook.com/SUSU.Workation" target="_blank"><b-icon icon="facebook"></b-icon></a></li>
-						<li><a href="https://www.instagram.com/susu.worcation" target="_blank"><b-icon icon="instagram"></b-icon></a></li>
-						<li><a href="https://twitter.com/SusuWorcation" target="_blank"><b-icon icon="twitter"></b-icon></a></li>
-						<li><a href="https://lin.ee/ozEVzzt" target="_blank"><img src="/images/common/line_footer.png" alt="友だち追加"></a></li>
-					</ul>
-				</div>
-
-				<p class="copyright">copyright&copy; {{ (new Date()).getFullYear() }} — sangi.com/</p>
-			</div>
-		</footer>
-	</div>
-
-<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
-<script src="https://unpkg.com/buefy/dist/buefy.min.js"></script>
-<script src="https://cdn.polyfill.io/v3/polyfill.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
-<script src="index.js"></script>
-
-
-</body>
+      <!--本日はここまで使用します-->
+    </main>
+    <footer class="footer">
+      <div>フッターエリア</div>
+    </footer>
+    <!-- js -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+    ></script> -->
+    <script src="index.js"></script>
+  </body>
+  <!---全体のレイアウト /------->
 </html>
-
